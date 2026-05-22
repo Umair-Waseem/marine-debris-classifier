@@ -7,7 +7,6 @@ app_port: 7860
 license: mit
 ---
 
-
 # Marine Debris Classifier Using Deep Learning
 
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
@@ -68,6 +67,19 @@ outputs/models/resnet18_finetuned_layer4_best.pth
 | Accuracy    | 81.61% |
 | Macro-F1    | 69.29% |
 | Weighted-F1 | 82.24% |
+
+### Multiclass Model Details
+
+The official multiclass model was evaluated on the held-out test set of **87 images**. It correctly classified **71 out of 87** images, giving an overall test accuracy of **81.61%**.
+
+| Class          | Correct / Total | Class Accuracy |
+| -------------- | --------------: | -------------: |
+| `plastic`      |         49 / 57 |         85.96% |
+| `foam`         |          6 / 10 |         60.00% |
+| `metal`        |           2 / 3 |         66.67% |
+| `other_debris` |         14 / 17 |         82.35% |
+
+The model performs best on classes with more training examples, especially `plastic`. The `metal` class has very few samples, so its class-wise performance is less stable.
 
 Run the final evaluation with:
 
@@ -259,6 +271,8 @@ python src/tune_multilabel_thresholds.py
 
 The official model achieved **81.61% accuracy** and **82.24% Weighted-F1** on the held-out test set. The Macro-F1 score is lower at **69.29%** because the dataset is imbalanced and some classes, especially `metal`, have very few examples.
 
+The multiclass evaluation shows that the model correctly predicted **49/57 plastic**, **6/10 foam**, **2/3 metal**, and **14/17 other_debris** test images. These results show that the model performs strongly overall, while minority classes remain more challenging because of limited training data.
+
 ---
 
 ## Hugging Face Deployment
@@ -300,7 +314,13 @@ huggingface_deployment.md
 
 ## Conclusion
 
-This project provides a complete marine debris classification prototype using ResNet18 transfer learning. The official model achieved **81.61% test accuracy** and includes a reproducible workflow for preprocessing, training, evaluation, inference, Streamlit demonstration, and Docker deployment.
+This project developed a complete marine debris classification system using deep learning. A fine-tuned ResNet18 model classified images into four classes: `plastic`, `foam`, `metal`, and `other_debris`.
+
+The official single-label model achieved **81.61% test accuracy**, **69.29% Macro-F1**, and **82.24% Weighted-F1** on the held-out test set. These results are strong considering the small dataset, class imbalance, and difficult underwater image conditions.
+
+An experimental multi-label model was also developed for images with more than one debris type. After validation-based threshold tuning, it achieved **70.11% subset accuracy**, **91.67% Hamming accuracy**, **94.09% Micro-F1**, **93.15% Macro-F1**, and **94.11% Weighted-F1** on the validation set.
+
+Overall, the project demonstrates a full machine learning workflow, including dataset preparation, preprocessing, model training, evaluation, deployment, and experimental improvement.
 
 ---
 
