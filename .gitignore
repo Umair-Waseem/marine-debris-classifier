@@ -1,5 +1,6 @@
 # Python / local environment
 venv/
+.venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -27,7 +28,7 @@ Project_files/
 _submission_cleanup_archive/
 marine_debris_classifier/
 
-# Generated report clutter. Keep only app/runtime essentials below.
+# Generated report clutter
 outputs/*
 !outputs/models/
 outputs/models/*
@@ -43,5 +44,5 @@ outputs/plots/*
 !outputs/plots/final_test_confusion_matrix.png
 !outputs/plots/final_test_confusion_matrix_normalized.png
 
-# Report-generation utilities are not needed for running or deploying the app.
+# Report-generation utilities
 tools/
