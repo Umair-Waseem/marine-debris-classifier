@@ -1,0 +1,31 @@
+{
+    "model_checkpoint": "outputs\\models\\multilabel_resnet18_layer4_best.pth",
+    "target_classes": [
+        "plastic",
+        "foam",
+        "metal",
+        "other_debris"
+    ],
+    "target_columns": [
+        "multilabel_plastic",
+        "multilabel_foam",
+        "multilabel_metal",
+        "multilabel_other_debris"
+    ],
+    "threshold_type": "per_class_validation_tuned",
+    "thresholds": {
+        "plastic": 0.25,
+        "foam": 0.25,
+        "metal": 0.75,
+        "other_debris": 0.15
+    },
+    "threshold_vector": [
+        0.25,
+        0.25,
+        0.75,
+        0.15
+    ],
+    "baseline_threshold": 0.5,
+    "validation_only": true,
+    "test_set_used": false
+}

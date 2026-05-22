@@ -1,0 +1,20 @@
+{
+    "target_classes": [
+        "plastic",
+        "foam",
+        "metal",
+        "other_debris"
+    ],
+    "class_to_idx": {
+        "plastic": 0,
+        "foam": 1,
+        "metal": 2,
+        "other_debris": 3
+    },
+    "idx_to_class": {
+        "0": "plastic",
+        "1": "foam",
+        "2": "metal",
+        "3": "other_debris"
+    }
+}

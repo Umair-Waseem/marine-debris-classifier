@@ -1,0 +1,245 @@
+{
+    "checkpoint_path": "outputs\\models\\resnet18_finetuned_layer4_best.pth",
+    "model_name": "resnet18_finetuned_layer4",
+    "test_set_used": true,
+    "train_used": false,
+    "validation_used_for_tuning": false,
+    "test_size": 87,
+    "test_class_distribution": {
+        "plastic": 57,
+        "foam": 10,
+        "metal": 3,
+        "other_debris": 17
+    },
+    "test_loss": 0.5081425165307933,
+    "test_accuracy": 0.8160919540229885,
+    "macro_precision": 0.6818957115009746,
+    "macro_recall": 0.7374613003095976,
+    "macro_f1": 0.6929429429429429,
+    "weighted_precision": 0.8361900920884586,
+    "weighted_recall": 0.8160919540229885,
+    "weighted_f1": 0.8223740982361673,
+    "per_class_metrics": {
+        "plastic": {
+            "precision": 0.9074074074074074,
+            "recall": 0.8596491228070176,
+            "f1": 0.8828828828828829,
+            "support": 57
+        },
+        "foam": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.6666666666666665,
+            "support": 10
+        },
+        "metal": {
+            "precision": 0.3333333333333333,
+            "recall": 0.6666666666666666,
+            "f1": 0.4444444444444444,
+            "support": 3
+        },
+        "other_debris": {
+            "precision": 0.7368421052631579,
+            "recall": 0.8235294117647058,
+            "f1": 0.7777777777777778,
+            "support": 17
+        }
+    },
+    "confusion_matrix": [
+        [
+            49,
+            2,
+            3,
+            3
+        ],
+        [
+            3,
+            6,
+            0,
+            1
+        ],
+        [
+            0,
+            0,
+            2,
+            1
+        ],
+        [
+            2,
+            0,
+            1,
+            14
+        ]
+    ],
+    "normalized_confusion_matrix": [
+        [
+            0.8596491228070176,
+            0.03508771929824561,
+            0.05263157894736842,
+            0.05263157894736842
+        ],
+        [
+            0.3,
+            0.6,
+            0.0,
+            0.1
+        ],
+        [
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.3333333333333333
+        ],
+        [
+            0.11764705882352941,
+            0.0,
+            0.058823529411764705,
+            0.8235294117647058
+        ]
+    ],
+    "class_to_idx": {
+        "plastic": 0,
+        "foam": 1,
+        "metal": 2,
+        "other_debris": 3
+    },
+    "idx_to_class": {
+        "0": "plastic",
+        "1": "foam",
+        "2": "metal",
+        "3": "other_debris"
+    },
+    "target_classes": [
+        "plastic",
+        "foam",
+        "metal",
+        "other_debris"
+    ],
+    "total_correct": 71,
+    "total_incorrect": 16,
+    "class_error_counts": {
+        "plastic": {
+            "total": 57,
+            "correct": 49,
+            "incorrect": 8,
+            "accuracy": 0.8596491228070176,
+            "error_rate": 0.14035087719298245
+        },
+        "foam": {
+            "total": 10,
+            "correct": 6,
+            "incorrect": 4,
+            "accuracy": 0.6,
+            "error_rate": 0.4
+        },
+        "metal": {
+            "total": 3,
+            "correct": 2,
+            "incorrect": 1,
+            "accuracy": 0.6666666666666666,
+            "error_rate": 0.3333333333333333
+        },
+        "other_debris": {
+            "total": 17,
+            "correct": 14,
+            "incorrect": 3,
+            "accuracy": 0.8235294117647058,
+            "error_rate": 0.17647058823529413
+        }
+    },
+    "caution_flag_error_summary": {
+        "ambiguous_multilabel": {
+            "correct": 34,
+            "incorrect": 12,
+            "total": 46,
+            "accuracy": 0.7391304347826086,
+            "error_rate": 0.2608695652173913
+        },
+        "ok": {
+            "correct": 37,
+            "incorrect": 4,
+            "total": 41,
+            "accuracy": 0.9024390243902439,
+            "error_rate": 0.0975609756097561
+        }
+    },
+    "ambiguity_error_summary": {
+        "False": {
+            "correct": 37,
+            "incorrect": 4,
+            "total": 41,
+            "accuracy": 0.9024390243902439,
+            "error_rate": 0.0975609756097561
+        },
+        "True": {
+            "correct": 34,
+            "incorrect": 12,
+            "total": 46,
+            "accuracy": 0.7391304347826086,
+            "error_rate": 0.2608695652173913
+        }
+    },
+    "most_common_confusion_pairs": [
+        {
+            "true_label": "foam",
+            "predicted_label": "plastic",
+            "count": 3
+        },
+        {
+            "true_label": "plastic",
+            "predicted_label": "other_debris",
+            "count": 3
+        },
+        {
+            "true_label": "plastic",
+            "predicted_label": "metal",
+            "count": 3
+        },
+        {
+            "true_label": "plastic",
+            "predicted_label": "foam",
+            "count": 2
+        },
+        {
+            "true_label": "other_debris",
+            "predicted_label": "plastic",
+            "count": 2
+        },
+        {
+            "true_label": "other_debris",
+            "predicted_label": "metal",
+            "count": 1
+        },
+        {
+            "true_label": "foam",
+            "predicted_label": "other_debris",
+            "count": 1
+        },
+        {
+            "true_label": "metal",
+            "predicted_label": "other_debris",
+            "count": 1
+        }
+    ],
+    "important_limitations": [
+        "Dataset is small.",
+        "Metal class has only 3 test images.",
+        "Many labels are derived from ambiguous multi-object images.",
+        "Results should not be overclaimed as real-world deployment performance.",
+        "Test results must not be used to tune the model further."
+    ],
+    "output_files": {
+        "predictions_csv": "outputs\\reports\\final_test_predictions.csv",
+        "misclassified_csv": "outputs\\reports\\final_test_misclassified_samples.csv",
+        "correct_csv": "outputs\\reports\\final_test_correct_samples.csv",
+        "classification_report_json": "outputs\\reports\\final_test_classification_report.json",
+        "evaluation_summary_json": "outputs\\reports\\final_test_evaluation_summary.json",
+        "evaluation_report_md": "outputs\\reports\\final_test_evaluation_report.md",
+        "confusion_pairs_csv": "outputs\\reports\\final_test_confusion_pairs.csv",
+        "confusion_matrix_plot": "outputs\\plots\\final_test_confusion_matrix.png",
+        "normalized_confusion_matrix_plot": "outputs\\plots\\final_test_confusion_matrix_normalized.png",
+        "misclassified_grid": "outputs\\plots\\final_test_misclassified_samples_grid.png",
+        "correct_grid": "outputs\\plots\\final_test_correct_samples_grid.png"
+    },
+    "recommended_next_step": "Proceed to Prompt 10 - Inference Pipeline, Streamlit App, Final Documentation, and Submission Audit. Report final test results honestly with class-wise metrics, macro-F1, confusion matrix, and limitations."
+}

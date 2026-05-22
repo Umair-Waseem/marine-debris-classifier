@@ -1,0 +1,191 @@
+{
+    "project_root": ".",
+    "model_name": "multilabel_resnet18_layer4_threshold_tuning",
+    "model_checkpoint": "outputs\\models\\multilabel_resnet18_layer4_best.pth",
+    "validation_records_csv": "data\\processed\\records\\multilabel_train_val_records.csv",
+    "target_classes": [
+        "plastic",
+        "foam",
+        "metal",
+        "other_debris"
+    ],
+    "target_columns": [
+        "multilabel_plastic",
+        "multilabel_foam",
+        "multilabel_metal",
+        "multilabel_other_debris"
+    ],
+    "threshold_grid": [
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9
+    ],
+    "baseline_thresholds": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+    ],
+    "tuned_thresholds": [
+        0.25,
+        0.25,
+        0.75,
+        0.15
+    ],
+    "tuned_thresholds_by_class": {
+        "plastic": 0.25,
+        "foam": 0.25,
+        "metal": 0.75,
+        "other_debris": 0.15
+    },
+    "validation_size": 87,
+    "validation_positive_counts": {
+        "plastic": 83,
+        "foam": 56,
+        "metal": 30,
+        "other_debris": 68
+    },
+    "validation_label_cardinality": 2.7241379310344827,
+    "baseline_metrics": {
+        "subset_accuracy": 0.5862068965517241,
+        "hamming_accuracy": 0.8505747126436781,
+        "per_class_metrics": {
+            "plastic": {
+                "precision": 0.9866666666666667,
+                "recall": 0.891566265060241,
+                "f1": 0.9367088607594936,
+                "support": 83,
+                "true_positive": 74,
+                "false_positive": 1,
+                "false_negative": 9,
+                "true_negative": 3
+            },
+            "foam": {
+                "precision": 0.9090909090909091,
+                "recall": 0.8928571428571429,
+                "f1": 0.9009009009009009,
+                "support": 56,
+                "true_positive": 50,
+                "false_positive": 5,
+                "false_negative": 6,
+                "true_negative": 26
+            },
+            "metal": {
+                "precision": 0.8387096774193549,
+                "recall": 0.8666666666666667,
+                "f1": 0.8524590163934426,
+                "support": 30,
+                "true_positive": 26,
+                "false_positive": 5,
+                "false_negative": 4,
+                "true_negative": 52
+            },
+            "other_debris": {
+                "precision": 0.9107142857142857,
+                "recall": 0.75,
+                "f1": 0.8225806451612904,
+                "support": 68,
+                "true_positive": 51,
+                "false_positive": 5,
+                "false_negative": 17,
+                "true_negative": 14
+            }
+        },
+        "macro_precision": 0.911295384722804,
+        "macro_recall": 0.8502725186460126,
+        "macro_f1": 0.8781623558037819,
+        "weighted_precision": 0.9278155527155119,
+        "weighted_recall": 0.8481012658227848,
+        "weighted_f1": 0.8848377226002508,
+        "micro_precision": 0.9262672811059908,
+        "micro_recall": 0.8481012658227848,
+        "micro_f1": 0.8854625550660793
+    },
+    "tuned_metrics": {
+        "subset_accuracy": 0.7011494252873564,
+        "hamming_accuracy": 0.9166666666666666,
+        "per_class_metrics": {
+            "plastic": {
+                "precision": 0.9764705882352941,
+                "recall": 1.0,
+                "f1": 0.988095238095238,
+                "support": 83,
+                "true_positive": 83,
+                "false_positive": 2,
+                "false_negative": 0,
+                "true_negative": 2
+            },
+            "foam": {
+                "precision": 0.875,
+                "recall": 1.0,
+                "f1": 0.9333333333333333,
+                "support": 56,
+                "true_positive": 56,
+                "false_positive": 8,
+                "false_negative": 0,
+                "true_negative": 23
+            },
+            "metal": {
+                "precision": 0.9615384615384616,
+                "recall": 0.8333333333333334,
+                "f1": 0.8928571428571429,
+                "support": 30,
+                "true_positive": 25,
+                "false_positive": 1,
+                "false_negative": 5,
+                "true_negative": 56
+            },
+            "other_debris": {
+                "precision": 0.8481012658227848,
+                "recall": 0.9852941176470589,
+                "f1": 0.91156462585034,
+                "support": 68,
+                "true_positive": 67,
+                "false_positive": 12,
+                "false_negative": 1,
+                "true_negative": 7
+            }
+        },
+        "macro_precision": 0.9152775788991351,
+        "macro_recall": 0.9546568627450981,
+        "macro_f1": 0.9314625850340136,
+        "weighted_precision": 0.9137725685469731,
+        "weighted_recall": 0.9746835443037974,
+        "weighted_f1": 0.94114211085278,
+        "micro_precision": 0.9094488188976378,
+        "micro_recall": 0.9746835443037974,
+        "micro_f1": 0.9409368635437881
+    },
+    "macro_f1_improved": true,
+    "micro_f1_improved": true,
+    "hamming_accuracy_improved": true,
+    "subset_accuracy_improved": true,
+    "recommendation_status": "tuned_thresholds_clear_candidate",
+    "recommended_next_step": "Use the tuned per-class thresholds with multilabel_resnet18_layer4_best.pth as the current multi-label candidate for dual-model inference. Do not tune using the test set.",
+    "training_performed": false,
+    "test_set_used": false,
+    "official_single_label_model_untouched": true,
+    "output_files": {
+        "thresholds_json": "outputs\\reports\\multilabel_layer4_tuned_thresholds.json",
+        "summary_json": "outputs\\reports\\multilabel_threshold_tuning_summary.json",
+        "report_md": "outputs\\reports\\multilabel_threshold_tuning_report.md",
+        "threshold_search_csv": "outputs\\reports\\multilabel_threshold_search_results.csv",
+        "baseline_vs_tuned_csv": "outputs\\reports\\multilabel_threshold_baseline_vs_tuned.csv",
+        "per_class_tuned_metrics_csv": "outputs\\reports\\multilabel_threshold_tuned_per_class_metrics.csv",
+        "threshold_plot": "outputs\\plots\\multilabel_threshold_tuning_per_class_f1.png"
+    }
+}

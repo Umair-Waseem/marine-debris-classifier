@@ -1,0 +1,47 @@
+# Python / local environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local logs, temp files, and secrets
+*.log
+*.err
+*.tmp
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+feedback.txt
+
+# Raw/private/bulky dataset files
+data/raw/
+*.zip
+*.tar
+*.gz
+
+# Old local/export folders
+Project_files/
+_submission_cleanup_archive/
+marine_debris_classifier/
+
+# Generated report clutter. Keep only app/runtime essentials below.
+outputs/*
+!outputs/models/
+outputs/models/*
+!outputs/models/*.pth
+!outputs/reports/
+outputs/reports/*
+!outputs/reports/class_mapping.json
+!outputs/reports/final_test_evaluation_summary.json
+!outputs/reports/multilabel_layer4_tuned_thresholds.json
+!outputs/reports/multilabel_threshold_tuning_summary.json
+!outputs/plots/
+outputs/plots/*
+!outputs/plots/final_test_confusion_matrix.png
+!outputs/plots/final_test_confusion_matrix_normalized.png
+
+# Report-generation utilities are not needed for running or deploying the app.
+tools/

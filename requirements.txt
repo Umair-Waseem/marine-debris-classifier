@@ -1,0 +1,15 @@
+torch
+torchvision
+
+numpy
+pandas
+
+Pillow
+matplotlib
+
+streamlit
+tqdm
+
+python-docx
+reportlab
+huggingface-hub
