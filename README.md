@@ -7,6 +7,7 @@ app_port: 7860
 license: mit
 ---
 
+
 # Marine Debris Classifier Using Deep Learning
 
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
@@ -14,48 +15,47 @@ license: mit
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.22%2B-ff4b4b.svg)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A ResNet18-based deep learning project for classifying marine debris images into `plastic`, `foam`, `metal`, and `other_debris`.
+A deep learning project that classifies marine debris images into four categories: `plastic`, `foam`, `metal`, and `other_debris`.
 
-This repository includes dataset preprocessing, model training, fine-tuning, final evaluation, command-line inference, Streamlit apps, Docker deployment, and an experimental multi-label extension.
+The project uses ResNet18 transfer learning and includes data preprocessing, model training, fine-tuning, evaluation, prediction scripts, Streamlit apps, Docker deployment, and an experimental multi-label extension.
 
 ---
 
 ## Overview
 
-Marine debris affects coastal and underwater ecosystems. This project uses computer vision to identify the dominant debris type in an image and support future environmental monitoring, cleanup planning, and automated waste-detection systems.
+Marine debris harms coastal and underwater environments. This project uses computer vision to identify the main type of debris shown in an image. It can support future work in environmental monitoring, cleanup planning, and automated waste detection.
 
-The official system is a **single-label multi-class classifier**. An experimental dual-model version is also included for predicting possible additional visible debris types.
+The official model is a **single-label multi-class classifier**. It predicts one main debris class for each image. An experimental dual-model version is also included to predict additional debris types that may be visible in the same image.
 
 ---
 
 ## Key Features
 
-* Complete marine debris image classification pipeline
-* Dataset inspection, cleaning, and preprocessing
-* Train, validation, and test split preparation
+* Complete image classification pipeline for marine debris
+* Dataset checking, cleaning, preprocessing, and splitting
 * ResNet18 baseline training and layer4 fine-tuning
-* Final held-out test evaluation
-* Streamlit inference applications
-* Command-line prediction scripts
-* Docker-ready Hugging Face deployment
-* Experimental multi-label and dual-model support
+* Final evaluation on a held-out test set
+* Streamlit apps for interactive image prediction
+* Command-line scripts for local prediction
+* Docker-ready setup for Hugging Face Spaces
+* Experimental multi-label and dual-model prediction workflow
 
 ---
 
 ## Target Classes
 
-| Class          | Description                                         |
+| Class          | Meaning                                             |
 | -------------- | --------------------------------------------------- |
 | `plastic`      | Plastic bags, bottles, packaging, and related waste |
 | `foam`         | Polystyrene foam and foam-like debris               |
-| `metal`        | Cans, metallic objects, and metal debris            |
-| `other_debris` | Glass, rubber, mixed, or unidentified debris        |
+| `metal`        | Cans, metallic objects, and other metal debris      |
+| `other_debris` | Glass, rubber, mixed waste, or unidentified debris  |
 
 ---
 
 ## Official Model
 
-The official model is a ResNet18-based single-label classifier fine-tuned for four marine debris classes.
+The official model is a ResNet18-based classifier fine-tuned to predict one of the four marine debris classes.
 
 ```text
 outputs/models/resnet18_finetuned_layer4_best.pth
@@ -69,7 +69,7 @@ outputs/models/resnet18_finetuned_layer4_best.pth
 | Macro-F1    | 69.29% |
 | Weighted-F1 | 82.24% |
 
-Regenerate the final evaluation:
+Run the final evaluation with:
 
 ```bash
 python src/evaluate_final_test.py
@@ -79,17 +79,19 @@ python src/evaluate_final_test.py
 
 ## Experimental Multi-Label Extension
 
-The experimental workflow combines the official single-label model with a separate multi-label model.
+The experimental workflow uses two models together.
 
-| Model              | Purpose                                  |
-| ------------------ | ---------------------------------------- |
-| Single-label model | Predicts the dominant debris class       |
-| Multi-label model  | Predicts additional visible debris types |
+| Model              | Role                                                      |
+| ------------------ | --------------------------------------------------------- |
+| Single-label model | Predicts the main debris class                            |
+| Multi-label model  | Predicts other possible debris types visible in the image |
 
 ```text
 outputs/models/multilabel_resnet18_layer4_best.pth
 outputs/reports/multilabel_layer4_tuned_thresholds.json
 ```
+
+### Multi-Label Thresholds
 
 | Class          | Threshold |
 | -------------- | --------: |
@@ -98,13 +100,13 @@ outputs/reports/multilabel_layer4_tuned_thresholds.json
 | `metal`        |      0.75 |
 | `other_debris` |      0.15 |
 
-This branch is experimental and does not replace the official single-label test result.
+This extension is experimental. It does not replace the official single-label model or its final test results.
 
 ---
 
 ## Dataset Summary
 
-The processed dataset contains **575 records**. One unusable record was excluded, leaving **574 usable images**.
+The processed dataset contains **575 records**. One unusable record was removed, leaving **574 usable images**.
 
 | Split      | Images |
 | ---------- | -----: |
@@ -122,16 +124,16 @@ The processed dataset contains **575 records**. One unusable record was excluded
 | `metal`        |    13 |          3 |    3 |
 | `other_debris` |    77 |         17 |   17 |
 
-The dataset is small and imbalanced, especially for the `metal` class.
+The dataset is small and imbalanced. The `metal` class has the fewest images, so it is harder for the model to learn this class reliably.
 
 ---
 
 ## Labeling Policy
 
-* Original annotations were treated as ground truth.
-* The official model uses one dominant label per image.
-* The experimental branch uses multi-hot labels.
-* No manual relabeling was performed for the official version.
+* Original dataset annotations were used as ground truth.
+* The official model uses one main label for each image.
+* The experimental multi-label branch supports multiple labels when more than one debris type may be visible.
+* No manual relabeling was done for the official version.
 
 ---
 
@@ -167,7 +169,7 @@ marine-debris-classifier/
 `-- project_report.md
 ```
 
-Raw datasets, virtual environments, temporary files, and bulky regenerated outputs are excluded. Final model weights are tracked with Git LFS because they exceed GitHub’s standard file size limit.
+Raw datasets, virtual environments, temporary files, and large regenerated outputs are not included in the repository. Final model weights are tracked with Git LFS because they are larger than GitHub’s standard file size limit.
 
 ---
 
@@ -179,7 +181,7 @@ Create a virtual environment:
 python -m venv venv
 ```
 
-Activate it:
+Activate the environment:
 
 ```bash
 # Windows PowerShell
@@ -189,7 +191,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-Install dependencies:
+Install the required packages:
 
 ```bash
 python -m pip install -r requirements.txt
@@ -217,13 +219,13 @@ streamlit run app/streamlit_dual_model_app.py
 ## Command-Line Prediction
 
 ```bash
-# Single-label prediction
+# Predict the main debris class
 python src/predict.py --image "path/to/image.jpg"
 
-# Save prediction as JSON
+# Save the prediction as a JSON file
 python src/predict.py --image "path/to/image.jpg" --output "outputs/reports/single_model_prediction_example.json"
 
-# Dual-model prediction
+# Run dual-model prediction
 python src/predict_dual_model.py --image "path/to/image.jpg"
 ```
 
@@ -255,13 +257,13 @@ python src/tune_multilabel_thresholds.py
 
 ## Results Interpretation
 
-The model achieved **81.61% accuracy** and **82.24% Weighted-F1** on the held-out test set. Macro-F1 is lower at **69.29%** because the dataset is imbalanced and minority classes, especially `metal`, have very few samples.
+The official model achieved **81.61% accuracy** and **82.24% Weighted-F1** on the held-out test set. The Macro-F1 score is lower at **69.29%** because the dataset is imbalanced and some classes, especially `metal`, have very few examples.
 
 ---
 
 ## Hugging Face Deployment
 
-This project is prepared for Docker-based Hugging Face Spaces deployment.
+This project is ready for Docker-based deployment on Hugging Face Spaces.
 
 ```bash
 streamlit run app.py --server.address 0.0.0.0 --server.port 7860
@@ -277,12 +279,12 @@ huggingface_deployment.md
 
 ## Limitations
 
-* Small and imbalanced dataset
-* Very few `metal` class samples
-* Many images contain multiple debris types
-* Official model predicts only one dominant class
-* Multi-label branch is experimental and validation-tuned
-* Streamlit apps are academic prototypes, not production systems
+* The dataset is small and imbalanced.
+* The `metal` class has very few samples.
+* Some images contain more than one debris type.
+* The official model predicts only one main class per image.
+* The multi-label branch is experimental and tuned on validation data.
+* The Streamlit apps are academic prototypes, not production systems.
 
 ---
 
@@ -290,7 +292,7 @@ huggingface_deployment.md
 
 * Collect more images for underrepresented classes
 * Add expert label verification
-* Train an object detection model for localized debris detection
+* Train an object detection model to locate debris in images
 * Evaluate the multi-label model on a separate unseen test set
 * Add batch prediction, logging, and model explainability
 
@@ -298,7 +300,7 @@ huggingface_deployment.md
 
 ## Conclusion
 
-This project provides a complete marine debris classification prototype using ResNet18 transfer learning. The official model achieved **81.61% test accuracy** with a reproducible workflow for preprocessing, training, evaluation, inference, Streamlit demonstration, and Docker deployment.
+This project provides a complete marine debris classification prototype using ResNet18 transfer learning. The official model achieved **81.61% test accuracy** and includes a reproducible workflow for preprocessing, training, evaluation, inference, Streamlit demonstration, and Docker deployment.
 
 ---
 
