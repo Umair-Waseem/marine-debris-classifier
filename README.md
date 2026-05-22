@@ -1,12 +1,11 @@
 ---
-
 title: Marine Debris Classifier
 colorFrom: blue
 colorTo: green
 sdk: docker
 app_port: 7860
 license: mit
-------------
+---
 
 # Marine Debris Classifier Using Deep Learning
 
